@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Portfolio | Data Analyst</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Fira Code', monospace;
+        }
+        .glassmorphism {
+            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.7);
+        }
+        .typewriter {
+            overflow: hidden;
+            border-right: 0.15em solid #10B981;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.15em;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #10B981; }
+        }
+        .modal-enter-active, .modal-leave-active {
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .modal-enter-from, .modal-leave-to {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .modal-enter-to, .modal-leave-from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-[#0F172A] text-gray-300 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="glassmorphism sticky top-0 z-50 w-full p-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <span class="text-xl font-bold text-emerald-400">DATA_ANALYST</span>
+        </div>
+        <div class="space-x-6">
+            <button onclick="showView('home')" class="text-emerald-400 hover:text-emerald-300 transition">INIT</button>
+            <button onclick="showView('profile')" class="text-emerald-400 hover:text-emerald-300 transition">CERTS</button>
+            <button onclick="showView('writeups')" class="text-emerald-400 hover:text-emerald-300 transition">WRITE-UPS</button>
+            <button onclick="showView('contact')" class="text-emerald-400 hover:text-emerald-300 transition">CONTACT</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-12">
+
+        <!-- Home View -->
+        <section id="home" class="view">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-3">
+                        <span class="px-3 py-1 bg-emerald-900 text-emerald-300 rounded-full text-sm font-medium">STATUS: ACTIVE</span>
+                    </div>
+                    <h1 class="text-4xl font-bold text-white mb-4">// INITIALIZING SYSTEM</h1>
+                    <div class="h-10">
+                        <p class="typewriter text-emerald-400 text-xl font-medium">
+                            > LOADING PROFILE... 100%<br>
+                            > SECURITY PROTOCOLS: ONLINE<br>
+                            > WELCOME, USER.
+                        </p>
+                    </div>
+                    <p class="text-gray-400 max-w-lg">
+                        Spécialiste en analyse de données, sécurité offensive et développement front-end.
+                        Passionné par les défis techniques et l'innovation cybernétique.
+                    </p>
+                </div>
+                <div class="flex justify-center">
+                    <img src="https://i.ibb.co/your-image-link.png" alt="Data Analyst Profile"
+                         class="w-64 h-64 rounded-full border-4 border-emerald-500 object-cover shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                </div>
+            </div>
+
+            <div class="mt-20">
+                <h2 class="text-2xl font-bold text-white mb-8 border-b border-gray-700 pb-2">// RECENT WRITE-UPS</h2>
+                <div id="writeups-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Write-ups will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile View -->
+        <section id="profile" class="view hidden">
+            <div class="space-y-12">
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-6 border-b border-gray-700 pb-2">// CERTIFICATIONS</h2>
+                    <div class="space-y-4">
+                        <div class="glassmorphism p-4 rounded-lg border border-gray-700">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-white">OSCP</h3>
+                                    <p class="text-sm text-gray-400">Offensive Security Certified Professional</p>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-sm text-gray-400">2023</span>
+                                    <div class="mt-1 px-2 py-1 bg-emerald-900 text-emerald-300 rounded text-xs">
+                                        OFFSEC
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- More certifications will be added by JavaScript -->
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-6 border-b border-gray-700 pb-2">// STACK & OUTILS</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="glassmorphism p-3 rounded-lg">
+                            <h4 class="font-semibold text-emerald-400 text-sm mb-2">RECON</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li>• Nmap</li>
+                                <li>• Masscan</li>
+                                <li>• Sublist3r</li>
+                            </ul>
+                        </div>
+                        <!-- More tool categories will be added by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="glassmorphism p-6 rounded-lg border border-gray-700">
+                    <h2 class="text-xl font-bold text-white mb-4">// ACCÈS DIRECT</h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span>data.analyst@protonmail.com</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>Paris, FR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Write-ups View -->
+        <section id="writeups" class="view hidden">
+            <h2 class="text-2xl font-bold text-white mb-8 border-b border-gray-700 pb-2">// ALL WRITE-UPS</h2>
+            <div id="all-writeups-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- All write-ups will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Contact View -->
+        <section id="contact" class="view hidden">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="text-2xl font-bold text-white mb-8 border-b border-gray-700 pb-2">// CONTACT PROTOCOL</h2>
+                <form class="space-y-6 glassmorphism p-6 rounded-lg border border-gray-700">
+                    <div>
+                        <label for="user_name" class="block text-sm font-medium text-gray-300 mb-1">USER_NAME</label>
+                        <input type="text" id="user_name" class="w-full bg-gray-800 text-white rounded border border-gray-700 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 py-2 px-3">
+                    </div>
+                    <div>
+                        <label for="user_email" class="block text-sm font-medium text-gray-300 mb-1">USER_EMAIL</label>
+                        <input type="email" id="user_email" class="w-full bg-gray-800 text-white rounded border border-gray-700 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 py-2 px-3">
+                    </div>
+                    <div>
+                        <label for="command_message" class="block text-sm font-medium text-gray-300 mb-1">COMMAND_MESSAGE</label>
+                        <textarea id="command_message" rows="5" class="w-full bg-gray-800 text-white rounded border border-gray-700 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 py-2 px-3"></textarea>
+                    </div>
+                    <button type="submit" class="px-6 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-500 transition font-medium">
+                        EXECUTE_CONTACT()
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glassmorphism p-6 mt-12 border-t border-gray-800">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div class="text-gray-400 text-sm">
+                &copy; 2026 DATA_ANALYST. ALL RIGHTS RESERVED.
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="text-gray-400 hover:text-emerald-400 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-emerald-400 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Write-up Modal -->
+    <div id="writeup-modal" class="fixed inset-0 z-[100] pointer-events-none opacity-0 transition-opacity">
+        <div class="absolute inset-0 bg-black bg-opacity-70" onclick="closeModal()"></div>
+        <div class="absolute inset-x-0 bottom-0 max-w-6xl mx-auto mb-6 rounded-lg overflow-hidden bg-[#0F172A] border border-gray-700 shadow-2xl transform translate-y-full transition-transform max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 z-10 bg-[#0F172A] border-b border-gray-700 p-4 flex justify-between items-center">
+                <button onclick="closeModal()" class="text-emerald-400 hover:text-emerald-300 transition font-medium flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                    RETOUR_PROCESS
+                </button>
+                <h3 id="modal-title" class="text-xl font-bold text-white"></h3>
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="rounded-lg overflow-hidden border border-gray-700">
+                            <img id="modal-main-image" src="" alt="Write-up main image" class="w-full h-auto max-h-[500px] object-contain">
+                        </div>
+                        <div id="modal-content" class="prose prose-invert max-w-none">
+                            <!-- Content will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="glassmorphism p-4 rounded-lg border border-gray-700">
+                            <h4 class="font-bold text-white mb-3">// INCIDENT INFO</h4>
+                            <div class="space-y-2">
+                                <div>
+                                    <p class="text-sm text-gray-400">CIBLE</p>
+                                    <p id="modal-target" class="font-medium text-emerald-400"></p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-400">DIFFICULTÉ</p>
+                                    <p id="modal-difficulty" class="font-medium"></p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-400">DATE</p>
+                                    <p id="modal-date" class="font-medium text-gray-300"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glassmorphism p-4 rounded-lg border border-gray-700">
+                            <h4 class="font-bold text-white mb-3">// GALLERY</h4>
+                            <div class="grid grid-cols-2 gap-2">
+                                <img id="modal-gallery-1" src="" alt="Gallery image 1" class="rounded w-full h-24 object-cover">
+                                <img id="modal-gallery-2" src="" alt="Gallery image 2" class="rounded w-full h-24 object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 pt-4 border-t border-gray-700 flex justify-between">
+                    <button id="prev-writeup" onclick="navigateWriteup(-1)" class="flex items-center space-x-2 text-emerald-400 hover:text-emerald-300 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                        <div class="flex flex-col items-start text-left">
+                            <span class="text-xs text-gray-400">PREV_INCIDENT</span>
+                            <span id="prev-title" class="text-sm font-medium"></span>
+                        </div>
+                        <img id="prev-thumbnail" src="" alt="Previous write-up" class="w-12 h-8 rounded object-cover">
+                    </button>
+                    <button id="next-writeup" onclick="navigateWriteup(1)" class="flex items-center space-x-2 text-emerald-400 hover:text-emerald-300 transition">
+                        <img id="next-thumbnail" src="" alt="Next write-up" class="w-12 h-8 rounded object-cover">
+                        <div class="flex flex-col items-end text-right">
+                            <span class="text-xs text-gray-400">NEXT_INCIDENT</span>
+                            <span id="next-title" class="text-sm font-medium"></span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data Model
+        const cyberData = {
+            name: "DATA_ANALYST",
+            role: "Analyste SOC & Pentester",
+            location: "Paris, FR",
+            email: "data.analyst@protonmail.com",
+            links: {
+                github: "https://github.com/data-analyst",
+                tryhackme: "https://tryhackme.com/p/data.analyst",
+                rootme: "https://www.root-me.org/data-analyst",
+                linkedin: "https://linkedin.com/in/data-analyst"
+            },
+            bio: "Spécialiste en analyse de données, sécurité offensive et développement front-end. Passionné par les défis techniques et l'innovation cybernétique.",
+            stack: {
+                recon: ["Nmap", "Masscan", "Sublist3r", "Amass", "theHarvester"],
+                exploitation: ["Metasploit", "Burp Suite", "SQLmap", "John the Ripper", "Hydra"],
+                scripting: ["Python", "Bash", "PowerShell", "JavaScript", "Go"],
+                web: ["React", "Tailwind CSS", "Node.js", "Express", "Django"]
+            },
+            certifications: [
+                { id: 1, name: "OSCP", fullName: "Offensive Security Certified Professional", org: "Offensive Security", date: "2023", badgeId: "OS-12345" },
+                { id: 2, name: "CEH", fullName: "Certified Ethical Hacker", org: "EC-Council", date: "2022", badgeId: "ECC-54321" },
+                { id: 3, name: "CISSP", fullName: "Certified Information Systems Security Professional", org: "ISC²", date: "2024", badgeId: "ISC-67890" }
+            ],
+            writeups: [
+                {
+                    id: 1,
+                    title: "Exploitation de CVE-2021-44228 (Log4Shell)",
+                    platform: "TryHackMe",
+                    date: "2022-12-15",
+                    difficulty: "High",
+                    image: "https://i.ibb.co/log4shell-thumb.png",
+                    gallery: [
+                        "https://i.ibb.co/log4shell-proof1.png",
+                        "https://i.ibb.co/log4shell-proof2.png"
+                    ],
+                    context: "Découverte et exploitation d'une vulnérabilité critique dans Apache Log4j permettant l'exécution de code à distance (RCE).",
+                    vulnerability: "La bibliothèque Log4j 2.x ne valide pas correctement les messages de log contenant des références JNDI, permettant à un attaquant d'exécuter du code arbitraire sur le serveur vulnérable.",
+                    exploitation: "Utilisation d'un payload JNDI malveillant envoyé via un en-tête HTTP User-Agent. Le serveur vulnérable résout la référence JNDI et exécute le code malveillant depuis un serveur LDAP contrôlé par l'attaquant.",
+                    mitigation: "Mise à jour immédiate vers Log4j 2.17.1 ou supérieur. Désactivation des lookups JNDI dans la configuration. Restriction des connexions sortantes depuis les serveurs.",
+                    github_link: "https://github.com/data-analyst/log4shell-exploit"
+                },
+                {
+                    id: 2,
+                    title: "Bypass d'authentification via SQLi",
+                    platform: "Root Me",
+                    date: "2023-03-22",
+                    difficulty: "Medium",
+                    image: "https://i.ibb.co/sqli-bypass-thumb.png",
+                    gallery: [
+                        "https://i.ibb.co/sqli-bypass-proof1.png",
+                        "https://i.ibb.co/sqli-bypass-proof2.png"
+                    ],
+                    context: "Challenge de contournement d'authentification sur une application web vulnérable aux injections SQL.",
+                    vulnerability: "L'application utilise des requêtes SQL dynamiques sans préparation ni échappement des entrées utilisateur, permettant l'injection de code SQL malveillant.",
+                    exploitation: "Injection d'une condition toujours vraie (' OR '1'='1) dans le champ de mot de passe, combinée à un commentaire SQL (--) pour ignorer le reste de la requête.",
+                    mitigation: "Utilisation de requêtes préparées (Prepared Statements) avec des paramètres liés. Implémentation d'un WAF pour détecter les tentatives d'injection. Validation stricte des entrées utilisateur.",
+                    github_link: "https://github.com/data-analyst/sqli-bypass-scripts"
+                },
+                {
+                    id: 3,
+                    title: "Prise de contrôle via LFI",
+                    platform: "Hack The Box",
+                    date: "2023-07-10",
+                    difficulty: "Medium",
+                    image: "https://i.ibb.co/lfi-exploit-thumb.png",
+                    gallery: [
+                        "https://i.ibb.co/lfi-exploit-proof1.png",
+                        "https://i.ibb.co/lfi-exploit-proof2.png"
+                    ],
+                    context: "Exploitation d'une vulnérabilité de type Local File Inclusion (LFI) pour obtenir un shell inverse sur un serveur web.",
+                    vulnerability: "L'application web permet l'inclusion de fichiers locaux via des paramètres non validés, sans restriction sur les chemins (path traversal).",
+                    exploitation: "Utilisation de wrappers PHP (php://filter) pour lire le code source des fichiers sensibles, puis inclusion de fichiers de log contenant du code PHP malveillant pour obtenir l'exécution de commandes.",
+                    mitigation: "Désactivation des wrappers dangereux dans la configuration PHP. Validation stricte des chemins de fichiers. Utilisation d'une liste blanche pour les fichiers inclus.",
+                    github_link: "https://github.com/data-analyst/lfi-to-rce"
+                }
+            ]
+        };
+
+        // DOM Elements
+        const views = {
+            home: document.getElementById('home'),
+            profile: document.getElementById('profile'),
+            writeups: document.getElementById('writeups'),
+            contact: document.getElementById('contact')
+        };
+        const modal = document.getElementById('writeup-modal');
+        let currentWriteupIndex = 0;
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', () => {
+            renderWriteupsGrid();
+            renderAllWriteupsGrid();
+            renderCertifications();
+            renderStackTools();
+        });
+
+        // View Management
+        function showView(viewId) {
+            Object.values(views).forEach(view => view.classList.add('hidden'));
+            views[viewId].classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Render Write-ups Grid (Home View)
+        function renderWriteupsGrid() {
+            const grid = document.getElementById('writeups-grid');
+            grid.innerHTML = cyberData.writeups.slice(0, 3).map(writeup => `
+                <div class="glassmorphism p-4 rounded-lg border border-gray-700 hover:border-emerald-500 transition cursor-pointer"
+                     onclick="openWriteupModal(${writeup.id - 1})">
+                    <div class="mb-3">
+                        <img src="${writeup.image}" alt="${writeup.title}" class="w-full h-40 object-cover rounded">
+                    </div>
+                    <h3 class="font-bold text-white mb-1">${writeup.title}</h3>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-400">${writeup.platform}</span>
+                        <span class="px-2 py-1 rounded text-xs font-medium ${
+                            writeup.difficulty === 'High' ? 'bg-red-900 text-red-300' :
+                            writeup.difficulty === 'Medium' ? 'bg-yellow-900 text-yellow-300' :
+                            'bg-green-900 text-green-300'
+                        }">
+                            ${writeup.difficulty}
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render All Write-ups Grid
+        function renderAllWriteupsGrid() {
+            const grid = document.getElementById('all-writeups-grid');
+            grid.innerHTML = cyberData.writeups.map(writeup => `
+                <div class="glassmorphism p-4 rounded-lg border border-gray-700 hover:border-emerald-500 transition cursor-pointer"
+                     onclick="openWriteupModal(${writeup.id - 1})">
+                    <div class="mb-3">
+                        <img src="${writeup.image}" alt="${writeup.title}" class="w-full h-40 object-cover rounded">
+                    </div>
+                    <h3 class="font-bold text-white mb-1">${writeup.title}</h3>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-400">${writeup.platform}</span>
+                        <span class="px-2 py-1 rounded text-xs font-medium ${
+                            writeup.difficulty === 'High' ? 'bg-red-900 text-red-300' :
+                            writeup.difficulty === 'Medium' ? 'bg-yellow-900 text-yellow-300' :
+                            'bg-green-900 text-green-300'
+                        }">
+                            ${writeup.difficulty}
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Certifications
+        function renderCertifications() {
+            const container = document.querySelector('#profile div:nth-of-type(1) .space-y-4');
+            container.innerHTML = cyberData.certifications.map(cert => `
+                <div class="glassmorphism p-4 rounded-lg border border-gray-700">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-white">${cert.name}</h3>
+                            <p class="text-sm text-gray-400">${cert.fullName}</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-sm text-gray-400">${cert.date}</span>
+                            <div class="mt-1 px-2 py-1 bg-emerald-900 text-emerald-300 rounded text-xs">
+                                ${cert.org}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Stack Tools
+        function renderStackTools() {
+            const container = document.querySelector('#profile div:nth-of-type(2) .grid');
+            container.innerHTML = Object.entries(cyberData.stack).map(([category, tools]) => `
+                <div class="glassmorphism p-3 rounded-lg">
+                    <h4 class="font-semibold text-emerald-400 text-sm mb-2">${category.toUpperCase()}</h4>
+                    <ul class="space-y-1 text-sm">
+                        ${tools.map(tool => `<li>• ${tool}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+        }
+
+        // Modal Management
+        function openWriteupModal(index) {
+            currentWriteupIndex = index;
+            const writeup = cyberData.writeups[index];
+
+            // Set main content
+            document.getElementById('modal-title').textContent = writeup.title;
+            document.getElementById('modal-main-image').src = writeup.image;
+            document.getElementById('modal-target').textContent = writeup.platform;
+            document.getElementById('modal-difficulty').textContent = writeup.difficulty;
+            document.getElementById('modal-date').textContent = writeup.date;
+
+            // Set gallery images
+            document.getElementById('modal-gallery-1').src = writeup.gallery[0];
+            document.getElementById('modal-gallery-2').src = writeup.gallery[1];
+
+            // Set content sections
+            const contentDiv = document.getElementById('modal-content');
+            contentDiv.innerHTML = `
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold text-white mb-2">// CONTEXTE</h4>
+                        <p class="text-gray-300">${writeup.context}</p>
+                    </div>
+                    <div>
+                        <img src="${writeup.gallery[0]}" alt="Proof 1" class="rounded-lg mb-2 w-full h-72 object-cover">
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-2">// VULNÉRABILITÉ</h4>
+                        <p class="text-gray-300">${writeup.vulnerability}</p>
+                    </div>
+                    <div>
+                        <img src="${writeup.gallery[1]}" alt="Proof 2" class="rounded-lg mb-2 w-full h-72 object-cover">
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-2">// EXPLOITATION</h4>
+                        <p class="text-gray-300">${writeup.exploitation}</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-2">// MITIGATION</h4>
+                        <p class="text-gray-300">${writeup.mitigation}</p>
+                    </div>
+                    <div class="glassmorphism p-3 rounded-lg border border-gray-700">
+                        <a href="${writeup.github_link}" target="_blank" class="flex items-center space-x-2 text-emerald-400 hover:text-emerald-300 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
+                            </svg>
+                            <span>VIEW_EXPLOIT()</span>
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            // Set navigation buttons
+            updateNavigationButtons();
+
+            // Show modal
+            modal.classList.remove('pointer-events-none', 'opacity-0');
+            modal.querySelector('div:last-child').classList.remove('translate-y-full');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.querySelector('div:last-child').classList.add('translate-y-full');
+            setTimeout(() => {
+                modal.classList.add('pointer-events-none', 'opacity-0');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        function updateNavigationButtons() {
+            const prevWriteup = cyberData.writeups[(currentWriteupIndex - 1 + cyberData.writeups.length) % cyberData.writeups.length];
+            const nextWriteup = cyberData.writeups[(currentWriteupIndex + 1) % cyberData.writeups.length];
+
+            document.getElementById('prev-title').textContent = prevWriteup.title;
+            document.getElementById('prev-thumbnail').src = prevWriteup.image;
+            document.getElementById('next-title').textContent = nextWriteup.title;
+            document.getElementById('next-thumbnail').src = nextWriteup.image;
+        }
+
+        function navigateWriteup(direction) {
+            currentWriteupIndex = (currentWriteupIndex + direction + cyberData.writeups.length) % cyberData.writeups.length;
+            openWriteupModal(currentWriteupIndex);
+        }
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (modal.classList.contains('opacity-0')) return;
+
+            if (e.key === 'Escape') {
+                closeModal();
+            } else if (e.key === 'ArrowLeft') {
+                navigateWriteup(-1);
+            } else if (e.key === 'ArrowRight') {
+                navigateWriteup(1);
+            }
+        });
+    </script>
+</body>
+</html>
