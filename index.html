@@ -3,582 +3,546 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Portfolio | Data Analyst</title>
+    <title>Infrastructures & Security | Portfolio</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        * {
-            font-family: 'Fira Code', monospace;
+        /* ============================================
+           VARIABLES ET THÈME DE COULEURS
+           ============================================
+        */
+        :root {
+            --bg-deep: #0F172A;       /* Bleu très sombre pour le fond */
+            --cyber-blue: #3B82F6;    /* Bleu vif pour les éléments primaires */
+            --cyber-green: #10B981;   /* Vert pour les indicateurs de succès/sécurité */
+            --glass-border: rgba(59, 130, 246, 0.2); /* Bordure translucide pour l'effet verre */
         }
-        .glassmorphism {
-            backdrop-filter: blur(10px);
-            background: rgba(15, 23, 42, 0.7);
+
+        body {
+            background-color: var(--bg-deep);
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
-        .typewriter {
-            overflow: hidden;
-            border-right: 0.15em solid #10B981;
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: 0.15em;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+
+        /* Police à chasse fixe pour renforcer l'aspect technique/informatique */
+        .font-mono { font-family: 'Fira Code', monospace; }
+        
+        /* ============================================
+           COMPOSANTS UI (Cyber / Glassmorphism)
+           ============================================
+        */
+
+        /* Navigation effet de verre (flou d'arrière-plan) */
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
         }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+
+        /* Cartes interactives avec effet de lueur (glow) au survol */
+        .cyber-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #10B981; }
+
+        .cyber-card:hover {
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+            transform: translateY(-4px); /* Petit saut vers le haut */
         }
-        .modal-enter-active, .modal-leave-active {
-            transition: opacity 0.3s, transform 0.3s;
+
+        /* Effets de texte lumineux */
+        .glow-text { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+        .glow-green { text-shadow: 0 0 10px rgba(16, 185, 129, 0.5); }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================
+        */
+
+        /* Ligne de scan qui descend le long de l'écran (effet vieux moniteur) */
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
         }
-        .modal-enter-from, .modal-leave-to {
-            opacity: 0;
-            transform: translateY(20px);
+        .scanline::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.05), transparent);
+            animation: scanline 8s linear infinite;
+            pointer-events: none;
         }
-        .modal-enter-to, .modal-leave-from {
-            opacity: 1;
-            transform: translateY(0);
+
+        /* Transition d'apparition douce pour les sections SPA */
+        .view-transition { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Curseur clignotant pour l'effet "machine à écrire" */
+        .typing-cursor::after {
+            content: "|";
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Personnalisation de la barre de défilement (scrollbar) */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--cyber-blue); }
     </style>
 </head>
-<body class="bg-[#0F172A] text-gray-300 min-h-screen flex flex-col">
+<body class="antialiased scanline">
 
-    <!-- Navbar -->
-    <nav class="glassmorphism sticky top-0 z-50 w-full p-4 flex justify-between items-center">
-        <div class="flex items-center space-x-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-            <span class="text-xl font-bold text-emerald-400">DATA_ANALYST</span>
-        </div>
-        <div class="space-x-6">
-            <button onclick="showView('home')" class="text-emerald-400 hover:text-emerald-300 transition">INIT</button>
-            <button onclick="showView('profile')" class="text-emerald-400 hover:text-emerald-300 transition">CERTS</button>
-            <button onclick="showView('writeups')" class="text-emerald-400 hover:text-emerald-300 transition">WRITE-UPS</button>
-            <button onclick="showView('contact')" class="text-emerald-400 hover:text-emerald-300 transition">CONTACT</button>
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-3 group cursor-pointer" onclick="app.navigate('home')">
+                    <div class="w-10 h-10 bg-blue-500/10 border border-blue-500/40 rounded flex items-center justify-center group-hover:border-blue-400 transition-all">
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <span class="font-mono font-bold text-xl tracking-tighter uppercase">root<span class="text-blue-500">@</span>127.0.0.1</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-1 font-mono text-sm">
+                    <button onclick="app.navigate('home')" class="px-4 py-2 text-slate-400 hover:text-blue-400 transition-all">~/Home</button>
+                    <button onclick="app.navigate('experience')" class="px-4 py-2 text-slate-400 hover:text-blue-400 transition-all">~/Logs</button>
+                    <button onclick="app.navigate('projects')" class="px-4 py-2 text-slate-400 hover:text-blue-400 transition-all">~/Deploiement</button>
+                    <button onclick="app.navigate('contact')" class="ml-4 px-5 py-2 bg-blue-600/10 border border-blue-500/50 text-blue-400 rounded hover:bg-blue-600/20 transition-all">Contact</button>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="flex-grow container mx-auto px-4 py-12">
-
-        <!-- Home View -->
-        <section id="home" class="view">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <div class="flex items-center space-x-3">
-                        <span class="px-3 py-1 bg-emerald-900 text-emerald-300 rounded-full text-sm font-medium">STATUS: ACTIVE</span>
+    <main id="app-content" class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
+        
+        <section id="view-home" class="view view-transition space-y-24">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center gap-3 px-3 py-1 rounded bg-green-500/10 border border-green-500/20 text-green-400 font-mono text-xs">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                        </span>
+                        SYSTEM_STATUS: SECURE
                     </div>
-                    <h1 class="text-4xl font-bold text-white mb-4">// INITIALIZING SYSTEM</h1>
-                    <div class="h-10">
-                        <p class="typewriter text-emerald-400 text-xl font-medium">
-                            > LOADING PROFILE... 100%<br>
-                            > SECURITY PROTOCOLS: ONLINE<br>
-                            > WELCOME, USER.
-                        </p>
+                    <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+                        <span id="hero-name" class="block text-slate-100 glow-text mb-2"></span>
+                        <span id="hero-role" class="block text-3xl md:text-4xl text-blue-400/80 font-mono typing-cursor"></span>
+                    </h1>
+                    <p id="hero-bio" class="text-slate-400 text-lg max-w-xl leading-relaxed border-l-2 border-slate-800 pl-6 italic"></p>
+                    
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <button onclick="app.navigate('projects')" class="px-8 py-4 bg-blue-600 text-white font-mono font-bold rounded shadow-lg shadow-blue-900/20 hover:bg-blue-500 transition-all">RUN_INFRA_AUDIT</button>
+                        <div class="flex items-center gap-4 px-6">
+                            <a id="hero-github" target="_blank" class="text-slate-500 hover:text-white transition-colors">GitHub</a>
+                            <a id="hero-linkedin" target="_blank" class="text-slate-500 hover:text-white transition-colors">LinkedIn</a>
+                        </div>
                     </div>
-                    <p class="text-gray-400 max-w-lg">
-                        Spécialiste en analyse de données, sécurité offensive et développement front-end.
-                        Passionné par les défis techniques et l'innovation cybernétique.
-                    </p>
                 </div>
-                <div class="flex justify-center">
-                    <img src="https://i.ibb.co/your-image-link.png" alt="Data Analyst Profile"
-                         class="w-64 h-64 rounded-full border-4 border-emerald-500 object-cover shadow-[0_0_20px_rgba(16,185,129,0.3)]">
-                </div>
-            </div>
-
-            <div class="mt-20">
-                <h2 class="text-2xl font-bold text-white mb-8 border-b border-gray-700 pb-2">// RECENT WRITE-UPS</h2>
-                <div id="writeups-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Write-ups will be populated by JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Profile View -->
-        <section id="profile" class="view hidden">
-            <div class="space-y-12">
-                <div>
-                    <h2 class="text-2xl font-bold text-white mb-6 border-b border-gray-700 pb-2">// CERTIFICATIONS</h2>
-                    <div class="space-y-4">
-                        <div class="glassmorphism p-4 rounded-lg border border-gray-700">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-white">OSCP</h3>
-                                    <p class="text-sm text-gray-400">Offensive Security Certified Professional</p>
-                                </div>
-                                <div class="text-right">
-                                    <span class="text-sm text-gray-400">2023</span>
-                                    <div class="mt-1 px-2 py-1 bg-emerald-900 text-emerald-300 rounded text-xs">
-                                        OFFSEC
-                                    </div>
-                                </div>
+                <div class="relative hidden lg:block">
+                    <div class="absolute -inset-4 bg-blue-500/10 blur-3xl rounded-full"></div>
+                    <div class="relative bg-slate-900 border border-slate-700 rounded-lg p-2 shadow-2xl overflow-hidden">
+                        <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800 bg-slate-950/50">
+                            <div class="flex gap-1.5">
+                                <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
                             </div>
+                            <span class="text-[10px] font-mono text-slate-500">monitoring_panel.sh</span>
                         </div>
-                        <!-- More certifications will be added by JavaScript -->
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" alt="Cyber Security" class="w-full grayscale hover:grayscale-0 transition-all duration-700">
                     </div>
                 </div>
+            </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="skills-container"></div>
+        </section>
+
+        <section id="view-experience" class="view hidden view-transition max-w-4xl mx-auto">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold font-mono text-blue-400 mb-2">>sudo journalctl -u career.service</h2>
+                <div class="h-1 w-20 bg-blue-500/30"></div>
+            </div>
+            <div id="experience-timeline" class="space-y-12 border-l-2 border-slate-800 ml-4"></div>
+        </section>
+
+        <section id="view-projects" class="view hidden view-transition">
+            <div class="flex justify-between items-end mb-12">
                 <div>
-                    <h2 class="text-2xl font-bold text-white mb-6 border-b border-gray-700 pb-2">// STACK & OUTILS</h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        <div class="glassmorphism p-3 rounded-lg">
-                            <h4 class="font-semibold text-emerald-400 text-sm mb-2">RECON</h4>
-                            <ul class="space-y-1 text-sm">
-                                <li>• Nmap</li>
-                                <li>• Masscan</li>
-                                <li>• Sublist3r</li>
-                            </ul>
-                        </div>
-                        <!-- More tool categories will be added by JavaScript -->
-                    </div>
-                </div>
-
-                <div class="glassmorphism p-6 rounded-lg border border-gray-700">
-                    <h2 class="text-xl font-bold text-white mb-4">// ACCÈS DIRECT</h2>
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            <span>data.analyst@protonmail.com</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            <span>Paris, FR</span>
-                        </div>
-                    </div>
+                    <h2 class="text-3xl font-bold font-mono text-blue-400 mb-2">> ls /dev/deployments</h2>
+                    <p class="text-slate-500 font-mono text-sm">Infrastructure-as-Code & Security projects portfolio</p>
                 </div>
             </div>
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </section>
 
-        <!-- Write-ups View -->
-        <section id="writeups" class="view hidden">
-            <h2 class="text-2xl font-bold text-white mb-8 border-b border-gray-700 pb-2">// ALL WRITE-UPS</h2>
-            <div id="all-writeups-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- All write-ups will be populated by JavaScript -->
-            </div>
-        </section>
-
-        <!-- Contact View -->
-        <section id="contact" class="view hidden">
-            <div class="max-w-2xl mx-auto">
-                <h2 class="text-2xl font-bold text-white mb-8 border-b border-gray-700 pb-2">// CONTACT PROTOCOL</h2>
-                <form class="space-y-6 glassmorphism p-6 rounded-lg border border-gray-700">
-                    <div>
-                        <label for="user_name" class="block text-sm font-medium text-gray-300 mb-1">USER_NAME</label>
-                        <input type="text" id="user_name" class="w-full bg-gray-800 text-white rounded border border-gray-700 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 py-2 px-3">
+        <section id="view-contact" class="view hidden view-transition max-w-2xl mx-auto">
+            <div class="bg-slate-900/50 border border-slate-800 p-8 rounded-lg">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold font-mono text-blue-400 mb-4">TCP_HANDSHAKE</h2>
+                    <p class="text-slate-400">Initiate a secure connection for collaborations or inquiries.</p>
+                </div>
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="font-mono text-xs text-blue-400 uppercase tracking-widest">Client_Identifier</label>
+                            <input type="text" placeholder="Name" class="w-full bg-slate-950 border border-slate-800 rounded px-4 py-3 focus:border-blue-500 focus:outline-none transition-all" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-mono text-xs text-blue-400 uppercase tracking-widest">Protocol_Email</label>
+                            <input type="email" placeholder="email@address.com" class="w-full bg-slate-950 border border-slate-800 rounded px-4 py-3 focus:border-blue-500 focus:outline-none transition-all" required>
+                        </div>
                     </div>
-                    <div>
-                        <label for="user_email" class="block text-sm font-medium text-gray-300 mb-1">USER_EMAIL</label>
-                        <input type="email" id="user_email" class="w-full bg-gray-800 text-white rounded border border-gray-700 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 py-2 px-3">
+                    <div class="space-y-2">
+                        <label class="font-mono text-xs text-blue-400 uppercase tracking-widest">Data_Payload</label>
+                        <textarea rows="5" placeholder="Enter message..." class="w-full bg-slate-950 border border-slate-800 rounded px-4 py-3 focus:border-blue-500 focus:outline-none transition-all" required></textarea>
                     </div>
-                    <div>
-                        <label for="command_message" class="block text-sm font-medium text-gray-300 mb-1">COMMAND_MESSAGE</label>
-                        <textarea id="command_message" rows="5" class="w-full bg-gray-800 text-white rounded border border-gray-700 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 py-2 px-3"></textarea>
-                    </div>
-                    <button type="submit" class="px-6 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-500 transition font-medium">
-                        EXECUTE_CONTACT()
+                    <button type="submit" class="w-full py-4 bg-blue-600/10 border border-blue-500 text-blue-400 font-mono font-bold rounded hover:bg-blue-600 hover:text-white transition-all">
+                        SEND_PACKET
                     </button>
                 </form>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="glassmorphism p-6 mt-12 border-t border-gray-800">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div class="text-gray-400 text-sm">
-                &copy; 2026 DATA_ANALYST. ALL RIGHTS RESERVED.
-            </div>
-            <div class="flex space-x-4">
-                <a href="#" class="text-gray-400 hover:text-emerald-400 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-emerald-400 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                </a>
-            </div>
+    <footer class="border-t border-slate-800/50 py-10 mt-20">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="font-mono text-xs text-slate-500 uppercase tracking-tighter" id="footer-copy"></div>
+            <div id="footer-socials" class="flex gap-6"></div>
         </div>
     </footer>
 
-    <!-- Write-up Modal -->
-    <div id="writeup-modal" class="fixed inset-0 z-[100] pointer-events-none opacity-0 transition-opacity">
-        <div class="absolute inset-0 bg-black bg-opacity-70" onclick="closeModal()"></div>
-        <div class="absolute inset-x-0 bottom-0 max-w-6xl mx-auto mb-6 rounded-lg overflow-hidden bg-[#0F172A] border border-gray-700 shadow-2xl transform translate-y-full transition-transform max-h-[90vh] overflow-y-auto">
-            <div class="sticky top-0 z-10 bg-[#0F172A] border-b border-gray-700 p-4 flex justify-between items-center">
-                <button onclick="closeModal()" class="text-emerald-400 hover:text-emerald-300 transition font-medium flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-                    </svg>
-                    RETOUR_PROCESS
-                </button>
-                <h3 id="modal-title" class="text-xl font-bold text-white"></h3>
+    <div id="project-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-slate-950/95 backdrop-blur-md" onclick="app.closeModal()"></div>
+        
+        <div class="relative bg-slate-900 border border-slate-700 w-full max-w-5xl max-h-[90vh] rounded-lg overflow-y-auto shadow-2xl">
+            <div class="sticky top-0 z-10 bg-slate-900/80 backdrop-blur border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <span class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+                    <span class="font-mono text-sm text-slate-300">PROJECT_DETAIL_VIEW</span>
+                </div>
+                <button onclick="app.closeModal()" class="text-slate-500 hover:text-white text-2xl font-mono transition-colors">&times;</button>
             </div>
-            <div class="p-6">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="lg:col-span-2 space-y-6">
-                        <div class="rounded-lg overflow-hidden border border-gray-700">
-                            <img id="modal-main-image" src="" alt="Write-up main image" class="w-full h-auto max-h-[500px] object-contain">
-                        </div>
-                        <div id="modal-content" class="prose prose-invert max-w-none">
-                            <!-- Content will be populated by JavaScript -->
-                        </div>
-                    </div>
-                    <div class="space-y-6">
-                        <div class="glassmorphism p-4 rounded-lg border border-gray-700">
-                            <h4 class="font-bold text-white mb-3">// INCIDENT INFO</h4>
-                            <div class="space-y-2">
-                                <div>
-                                    <p class="text-sm text-gray-400">CIBLE</p>
-                                    <p id="modal-target" class="font-medium text-emerald-400"></p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-400">DIFFICULTÉ</p>
-                                    <p id="modal-difficulty" class="font-medium"></p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-400">DATE</p>
-                                    <p id="modal-date" class="font-medium text-gray-300"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="glassmorphism p-4 rounded-lg border border-gray-700">
-                            <h4 class="font-bold text-white mb-3">// GALLERY</h4>
-                            <div class="grid grid-cols-2 gap-2">
-                                <img id="modal-gallery-1" src="" alt="Gallery image 1" class="rounded w-full h-24 object-cover">
-                                <img id="modal-gallery-2" src="" alt="Gallery image 2" class="rounded w-full h-24 object-cover">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-8 pt-4 border-t border-gray-700 flex justify-between">
-                    <button id="prev-writeup" onclick="navigateWriteup(-1)" class="flex items-center space-x-2 text-emerald-400 hover:text-emerald-300 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                        <div class="flex flex-col items-start text-left">
-                            <span class="text-xs text-gray-400">PREV_INCIDENT</span>
-                            <span id="prev-title" class="text-sm font-medium"></span>
-                        </div>
-                        <img id="prev-thumbnail" src="" alt="Previous write-up" class="w-12 h-8 rounded object-cover">
-                    </button>
-                    <button id="next-writeup" onclick="navigateWriteup(1)" class="flex items-center space-x-2 text-emerald-400 hover:text-emerald-300 transition">
-                        <img id="next-thumbnail" src="" alt="Next write-up" class="w-12 h-8 rounded object-cover">
-                        <div class="flex flex-col items-end text-right">
-                            <span class="text-xs text-gray-400">NEXT_INCIDENT</span>
-                            <span id="next-title" class="text-sm font-medium"></span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                </div>
+            
+            <div id="modal-content" class="p-8"></div>
+            
+            <div class="sticky bottom-0 bg-slate-900/90 border-t border-slate-800 p-4 flex justify-between">
+                <button onclick="app.navigateModal(-1)" class="px-6 py-2 bg-slate-800 hover:bg-slate-700 rounded font-mono text-sm transition-all">< PREV</button>
+                <button onclick="app.navigateModal(1)" class="px-6 py-2 bg-slate-800 hover:bg-slate-700 rounded font-mono text-sm transition-all">NEXT ></button>
             </div>
         </div>
     </div>
 
     <script>
-        // Data Model
-        const cyberData = {
-            name: "DATA_ANALYST",
-            role: "Analyste SOC & Pentester",
-            location: "Paris, FR",
-            email: "data.analyst@protonmail.com",
-            links: {
-                github: "https://github.com/data-analyst",
-                tryhackme: "https://tryhackme.com/p/data.analyst",
-                rootme: "https://www.root-me.org/data-analyst",
-                linkedin: "https://linkedin.com/in/data-analyst"
+        /**
+         * adminData : Objet central stockant toutes les données du portfolio.
+         * Modifier cet objet permet de mettre à jour le contenu sans toucher au HTML.
+         */
+        const adminData = {
+            profile: {
+                firstName: "Maxence",
+                lastName: "ARRAULT",
+                role: "Junior Admin Sys Res",
+                bio: "Spécialiste en administration d'infrastructure réseau. Je fais des schémas réseaux, les mets en place, configure et organise toute l'infrastructure qui va derrière serveurs, routeurs, machines clientes, etc...",
+                socials: {
+                    github: "https://github.com/Jwxck/",
+                    linkedin: "https://www.linkedin.com/in/maxence-arrault-b3799b32b/",
+                    twitter: "https://youtube.com"
+                }
             },
-            bio: "Spécialiste en analyse de données, sécurité offensive et développement front-end. Passionné par les défis techniques et l'innovation cybernétique.",
-            stack: {
-                recon: ["Nmap", "Masscan", "Sublist3r", "Amass", "theHarvester"],
-                exploitation: ["Metasploit", "Burp Suite", "SQLmap", "John the Ripper", "Hydra"],
-                scripting: ["Python", "Bash", "PowerShell", "JavaScript", "Go"],
-                web: ["React", "Tailwind CSS", "Node.js", "Express", "Django"]
-            },
-            certifications: [
-                { id: 1, name: "OSCP", fullName: "Offensive Security Certified Professional", org: "Offensive Security", date: "2023", badgeId: "OS-12345" },
-                { id: 2, name: "CEH", fullName: "Certified Ethical Hacker", org: "EC-Council", date: "2022", badgeId: "ECC-54321" },
-                { id: 3, name: "CISSP", fullName: "Certified Information Systems Security Professional", org: "ISC²", date: "2024", badgeId: "ISC-67890" }
+            /* Pour ajouter une compétence : rajouter une ligne dans 'items' de la catégorie correspondante */
+            skills: [
+                { category: "Infrastructure", items: ["Linux Server (deb,ubuntu,alma...)", "Proxmox", "Kubernetes", "Ansible"] },
+                { category: "Cybersecurity", items: ["Sécurité server", "Networking"] },
+                { category: "Networking", items: ["Routing", "Networking", "Firewalling", "WAN/LAN"] },
+                { category: "Server", items: ["AD DS ", "DHCP", "Docker", "DNS"] },
+                { category: "Scripting", items: ["Python", "PHP", "PowerShell", "HTML/CSS"] }
             ],
-            writeups: [
+            /* Pour ajouter une expérience : rajouter un bloc {} dans le tableau */
+            experience: [
                 {
                     id: 1,
-                    title: "Exploitation de CVE-2021-44228 (Log4Shell)",
-                    platform: "TryHackMe",
-                    date: "2022-12-15",
-                    difficulty: "High",
-                    image: "https://i.ibb.co/log4shell-thumb.png",
-                    gallery: [
-                        "https://i.ibb.co/log4shell-proof1.png",
-                        "https://i.ibb.co/log4shell-proof2.png"
-                    ],
-                    context: "Découverte et exploitation d'une vulnérabilité critique dans Apache Log4j permettant l'exécution de code à distance (RCE).",
-                    vulnerability: "La bibliothèque Log4j 2.x ne valide pas correctement les messages de log contenant des références JNDI, permettant à un attaquant d'exécuter du code arbitraire sur le serveur vulnérable.",
-                    exploitation: "Utilisation d'un payload JNDI malveillant envoyé via un en-tête HTTP User-Agent. Le serveur vulnérable résout la référence JNDI et exécute le code malveillant depuis un serveur LDAP contrôlé par l'attaquant.",
-                    mitigation: "Mise à jour immédiate vers Log4j 2.17.1 ou supérieur. Désactivation des lookups JNDI dans la configuration. Restriction des connexions sortantes depuis les serveurs.",
-                    github_link: "https://github.com/data-analyst/log4shell-exploit"
+                    period: "Janvier 2025 — Février 2026",
+                    role: "Consultant informatique",
+                    company: "SII Groupe",
+                    details: "Masterisation de postes de travail sous Windows 10,11/Linux/MACOS. Support de niveau 1/2 pour les utilisateurs finaux. "
                 },
                 {
                     id: 2,
-                    title: "Bypass d'authentification via SQLi",
-                    platform: "Root Me",
-                    date: "2023-03-22",
-                    difficulty: "Medium",
-                    image: "https://i.ibb.co/sqli-bypass-thumb.png",
-                    gallery: [
-                        "https://i.ibb.co/sqli-bypass-proof1.png",
-                        "https://i.ibb.co/sqli-bypass-proof2.png"
-                    ],
-                    context: "Challenge de contournement d'authentification sur une application web vulnérable aux injections SQL.",
-                    vulnerability: "L'application utilise des requêtes SQL dynamiques sans préparation ni échappement des entrées utilisateur, permettant l'injection de code SQL malveillant.",
-                    exploitation: "Injection d'une condition toujours vraie (' OR '1'='1) dans le champ de mot de passe, combinée à un commentaire SQL (--) pour ignorer le reste de la requête.",
-                    mitigation: "Utilisation de requêtes préparées (Prepared Statements) avec des paramètres liés. Implémentation d'un WAF pour détecter les tentatives d'injection. Validation stricte des entrées utilisateur.",
-                    github_link: "https://github.com/data-analyst/sqli-bypass-scripts"
+                    period: "2023 — 2025",
+                    role: "Technicien support informatique",
+                    company: "Direction Technique - Groupe La Poste",
+                    details: "Gestion des incidents et demandes de service pour les collaborateurs. Maintenance préventive et corrective des équipements informatiques. Participation à des projets d'amélioration de l'infrastructure IT."
+                }
+            ],
+            /* Pour ajouter un projet : copier-coller un bloc {} existant */
+            projects: [
+                {
+                    id: 0,
+                    title: "Zero Trust Network Access (ZTNA)",
+                    shortDesc: "Implémentation d'une architecture d'accès sécurisé sans VPN traditionnel.",
+                    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=800",
+                    fullDesc: "Refonte complète de l'accès distant pour 2000 collaborateurs. Abandon du VPN client-to-site pour un modèle basé sur l'identité et le contexte de l'appareil.",
+                    problem: "Le VPN traditionnel autorisait trop de mouvements latéraux en cas de compromission d'identifiants.",
+                    solution: "Déploiement d'une passerelle d'accès vérifiant l'état du poste (mises à jour, AV actif) et l'identité (MFA) avant d'autoriser l'accès granulaire aux applications.",
+                    techs: ["Identity Proxy", "Wireguard", "OIDC", "CoreDNS"],
+                    link: "#"
                 },
                 {
-                    id: 3,
-                    title: "Prise de contrôle via LFI",
-                    platform: "Hack The Box",
-                    date: "2023-07-10",
-                    difficulty: "Medium",
-                    image: "https://i.ibb.co/lfi-exploit-thumb.png",
-                    gallery: [
-                        "https://i.ibb.co/lfi-exploit-proof1.png",
-                        "https://i.ibb.co/lfi-exploit-proof2.png"
-                    ],
-                    context: "Exploitation d'une vulnérabilité de type Local File Inclusion (LFI) pour obtenir un shell inverse sur un serveur web.",
-                    vulnerability: "L'application web permet l'inclusion de fichiers locaux via des paramètres non validés, sans restriction sur les chemins (path traversal).",
-                    exploitation: "Utilisation de wrappers PHP (php://filter) pour lire le code source des fichiers sensibles, puis inclusion de fichiers de log contenant du code PHP malveillant pour obtenir l'exécution de commandes.",
-                    mitigation: "Désactivation des wrappers dangereux dans la configuration PHP. Validation stricte des chemins de fichiers. Utilisation d'une liste blanche pour les fichiers inclus.",
-                    github_link: "https://github.com/data-analyst/lfi-to-rce"
+                    id: 1,
+                    title: "Automated SIEM Deployment",
+                    shortDesc: "Stack de monitoring de sécurité automatisée avec Ansible.",
+                    image: "https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&q=80&w=800",
+                    fullDesc: "Création d'un environnement de détection d'incidents prêt à l'emploi, incluant la collecte de logs et la génération d'alertes intelligentes.",
+                    problem: "Les déploiements manuels de SIEM prenaient des jours et étaient sujets aux erreurs de configuration de parsing.",
+                    solution: "Écriture de playbooks Ansible pour provisionner une stack ELK avec des agents Fleet pré-configurés pour les standards CIS Benchmark.",
+                    techs: ["Elasticsearch", "Logstash", "Ansible", "Fleet"],
+                    link: "#"
+                },
+                {
+                    id: 2,
+                    title: "Cloud Hardening Engine",
+                    shortDesc: "Scanner de conformité de sécurité pour infrastructures AWS.",
+                    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800",
+                    fullDesc: "Outil interne de vérification continue des ressources Cloud pour prévenir les fuites de données (S3 publics, security groups trop permissifs).",
+                    problem: "Dérive de configuration (Config Drift) rendant les audits annuels inefficaces.",
+                    solution: "Scripting Python utilisant Boto3 pour monitorer en temps réel les changements d'état et notifier les équipes via Slack.",
+                    techs: ["Python", "AWS SDK", "Boto3", "Lambda"],
+                    link: "#"
                 }
             ]
         };
 
-        // DOM Elements
-        const views = {
-            home: document.getElementById('home'),
-            profile: document.getElementById('profile'),
-            writeups: document.getElementById('writeups'),
-            contact: document.getElementById('contact')
-        };
-        const modal = document.getElementById('writeup-modal');
-        let currentWriteupIndex = 0;
+        /**
+         * app : Module principal contenant la logique du site (Navigation, Rendu, Modale)
+         */
+        const app = {
+            currentProjectIndex: 0, // Stocke l'index du projet actuellement vu dans la modale
 
-        // Initialize the app
-        document.addEventListener('DOMContentLoaded', () => {
-            renderWriteupsGrid();
-            renderAllWriteupsGrid();
-            renderCertifications();
-            renderStackTools();
-        });
+            /**
+             * init() : Point d'entrée de l'application au chargement
+             */
+            init() {
+                this.renderStatic();     // Injecte nom, bio, footer
+                this.renderSkills();     // Génère les cartes de compétences
+                this.renderExperience(); // Génère la timeline
+                this.renderProjects();   // Génère la grille de projets
+                this.initTyping();       // Lance l'animation de titre
+                this.handleForms();      // Configure les écouteurs de formulaires
+            },
 
-        // View Management
-        function showView(viewId) {
-            Object.values(views).forEach(view => view.classList.add('hidden'));
-            views[viewId].classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+            /**
+             * renderStatic() : Remplit les éléments HTML fixes avec les données de profil
+             */
+            renderStatic() {
+                const p = adminData.profile;
+                document.getElementById('hero-name').innerText = `${p.firstName} ${p.lastName}`;
+                document.getElementById('hero-bio').innerText = p.bio;
+                document.getElementById('hero-github').href = p.socials.github;
+                document.getElementById('hero-linkedin').href = p.socials.linkedin;
+                document.getElementById('footer-copy').innerText = `© ${new Date().getFullYear()} ${p.lastName}_INFRA_CORE_SYSTEM`;
+                
+                // Génération dynamique des liens sociaux du footer
+                const socialFooter = document.getElementById('footer-socials');
+                Object.entries(p.socials).forEach(([key, url]) => {
+                    socialFooter.innerHTML += `<a href="${url}" target="_blank" class="text-slate-500 hover:text-blue-400 font-mono text-xs transition-colors uppercase">${key}</a>`;
+                });
+            },
 
-        // Render Write-ups Grid (Home View)
-        function renderWriteupsGrid() {
-            const grid = document.getElementById('writeups-grid');
-            grid.innerHTML = cyberData.writeups.slice(0, 3).map(writeup => `
-                <div class="glassmorphism p-4 rounded-lg border border-gray-700 hover:border-emerald-500 transition cursor-pointer"
-                     onclick="openWriteupModal(${writeup.id - 1})">
-                    <div class="mb-3">
-                        <img src="${writeup.image}" alt="${writeup.title}" class="w-full h-40 object-cover rounded">
-                    </div>
-                    <h3 class="font-bold text-white mb-1">${writeup.title}</h3>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">${writeup.platform}</span>
-                        <span class="px-2 py-1 rounded text-xs font-medium ${
-                            writeup.difficulty === 'High' ? 'bg-red-900 text-red-300' :
-                            writeup.difficulty === 'Medium' ? 'bg-yellow-900 text-yellow-300' :
-                            'bg-green-900 text-green-300'
-                        }">
-                            ${writeup.difficulty}
-                        </span>
-                    </div>
-                </div>
-            `).join('');
-        }
+            /**
+             * initTyping() : Effet de machine à écrire sur le rôle professionnel
+             */
+            initTyping() {
+                const target = document.getElementById('hero-role');
+                const text = adminData.profile.role;
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        target.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, 50); // Vitesse de frappe (ms)
+                    }
+                }
+                setTimeout(type, 1000); // Délai avant lancement (1s)
+            },
 
-        // Render All Write-ups Grid
-        function renderAllWriteupsGrid() {
-            const grid = document.getElementById('all-writeups-grid');
-            grid.innerHTML = cyberData.writeups.map(writeup => `
-                <div class="glassmorphism p-4 rounded-lg border border-gray-700 hover:border-emerald-500 transition cursor-pointer"
-                     onclick="openWriteupModal(${writeup.id - 1})">
-                    <div class="mb-3">
-                        <img src="${writeup.image}" alt="${writeup.title}" class="w-full h-40 object-cover rounded">
-                    </div>
-                    <h3 class="font-bold text-white mb-1">${writeup.title}</h3>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">${writeup.platform}</span>
-                        <span class="px-2 py-1 rounded text-xs font-medium ${
-                            writeup.difficulty === 'High' ? 'bg-red-900 text-red-300' :
-                            writeup.difficulty === 'Medium' ? 'bg-yellow-900 text-yellow-300' :
-                            'bg-green-900 text-green-300'
-                        }">
-                            ${writeup.difficulty}
-                        </span>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Render Certifications
-        function renderCertifications() {
-            const container = document.querySelector('#profile div:nth-of-type(1) .space-y-4');
-            container.innerHTML = cyberData.certifications.map(cert => `
-                <div class="glassmorphism p-4 rounded-lg border border-gray-700">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="font-bold text-white">${cert.name}</h3>
-                            <p class="text-sm text-gray-400">${cert.fullName}</p>
+            /**
+             * renderSkills() : Parcourt adminData.skills pour créer les cartes techniques
+             */
+            renderSkills() {
+                const container = document.getElementById('skills-container');
+                adminData.skills.forEach(cat => {
+                    const skillList = cat.items.map(s => `<li class="text-sm text-slate-400 flex items-center gap-2 before:content-['>'] before:text-blue-500/50">${s}</li>`).join('');
+                    container.innerHTML += `
+                        <div class="cyber-card p-6 rounded">
+                            <h3 class="font-mono text-blue-400 text-sm font-bold mb-4 border-b border-slate-800 pb-2"># ${cat.category}</h3>
+                            <ul class="space-y-2">${skillList}</ul>
                         </div>
-                        <div class="text-right">
-                            <span class="text-sm text-gray-400">${cert.date}</span>
-                            <div class="mt-1 px-2 py-1 bg-emerald-900 text-emerald-300 rounded text-xs">
-                                ${cert.org}
+                    `;
+                });
+            },
+
+            /**
+             * renderExperience() : Construit la timeline des expériences professionnelles
+             */
+            renderExperience() {
+                const container = document.getElementById('experience-timeline');
+                adminData.experience.forEach(exp => {
+                    container.innerHTML += `
+                        <div class="relative pl-12 group">
+                            <div class="absolute left-[-9px] top-1 w-4 h-4 rounded-full bg-slate-900 border-2 border-slate-700 group-hover:border-blue-500 group-hover:shadow-[0_0_10px_rgba(59,130,246,0.5)] transition-all"></div>
+                            <div class="cyber-card p-8 rounded">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                                    <h3 class="text-xl font-bold text-slate-200">${exp.role}</h3>
+                                    <span class="font-mono text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded border border-blue-500/20">${exp.period}</span>
+                                </div>
+                                <h4 class="font-mono text-sm text-green-400 mb-4 tracking-tighter uppercase">@ ${exp.company}</h4>
+                                <p class="text-slate-400 leading-relaxed text-sm">${exp.details}</p>
                             </div>
                         </div>
+                    `;
+                });
+            },
+
+            /**
+             * renderProjects() : Génère les cartes de projets cliquables
+             */
+            renderProjects() {
+                const container = document.getElementById('projects-grid');
+                adminData.projects.forEach((proj, idx) => {
+                    container.innerHTML += `
+                        <div class="cyber-card group overflow-hidden rounded cursor-pointer" onclick="app.openModal(${idx})">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="${proj.image}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+                                <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-transparent"></div>
+                            </div>
+                            <div class="p-6 space-y-4">
+                                <h3 class="text-lg font-bold text-slate-100 group-hover:text-blue-400 transition-colors">${proj.title}</h3>
+                                <p class="text-slate-400 text-sm line-clamp-2">${proj.shortDesc}</p>
+                                <div class="flex flex-wrap gap-2">
+                                    ${proj.techs.slice(0, 3).map(t => `<span class="text-[10px] font-mono border border-slate-700 px-2 py-0.5 rounded text-slate-500">${t}</span>`).join('')}
+                                </div>
+                                <div class="pt-4 flex items-center justify-between">
+                                    <span class="text-xs font-mono text-blue-500">INIT_DETAILS()</span>
+                                    <svg class="w-4 h-4 text-blue-500 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            },
+
+            /**
+             * navigate(viewId) : Système de routage SPA simple
+             * @param {string} viewId - Identifiant de la vue à afficher (ex: 'home', 'projects')
+             */
+            navigate(viewId) {
+                // Cache toutes les sections
+                document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+                // Affiche la section demandée
+                document.getElementById(`view-${viewId}`).classList.remove('hidden');
+                // Remonte en haut de page
+                window.scrollTo(0, 0);
+            },
+
+            /**
+             * openModal(idx) : Affiche la fenêtre de détails d'un projet
+             * @param {number} idx - Index du projet dans adminData.projects
+             */
+            openModal(idx) {
+                this.currentProjectIndex = idx;
+                const proj = adminData.projects[idx];
+                const content = document.getElementById('modal-content');
+                
+                // Injection dynamique du contenu détaillé dans la modale
+                content.innerHTML = `
+                    <div class="grid lg:grid-cols-2 gap-10">
+                        <div class="space-y-6">
+                            <h2 class="text-3xl font-bold text-white font-mono">${proj.title}</h2>
+                            <p class="text-slate-400 leading-relaxed">${proj.fullDesc}</p>
+                            <div class="grid md:grid-cols-2 gap-6 bg-slate-950/50 p-6 rounded border border-slate-800">
+                                <div>
+                                    <h4 class="text-red-400 font-mono text-xs uppercase mb-2">Challenge</h4>
+                                    <p class="text-xs text-slate-500 leading-relaxed">${proj.problem}</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-green-400 font-mono text-xs uppercase mb-2">Technical_Solution</h4>
+                                    <p class="text-xs text-slate-500 leading-relaxed">${proj.solution}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-8">
+                            <img src="${proj.image}" class="w-full h-64 object-cover rounded border border-slate-800">
+                            <div>
+                                <h4 class="text-slate-300 font-mono text-xs mb-4 uppercase tracking-widest">Stack_Engine</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    ${proj.techs.map(t => `<span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-3 py-1 rounded text-xs font-mono">${t}</span>`).join('')}
+                                </div>
+                            </div>
+                            <a href="${proj.link}" class="inline-block w-full py-4 bg-slate-800 text-center font-mono text-sm hover:bg-slate-700 transition-all">VIEW_DOCUMENTATION_SRC</a>
+                        </div>
                     </div>
-                </div>
-            `).join('');
-        }
+                `;
+                // Affiche la modale (système de classes Tailwind)
+                document.getElementById('project-modal').classList.replace('hidden', 'flex');
+                document.body.style.overflow = 'hidden'; // Empêche le défilement du fond
+            },
 
-        // Render Stack Tools
-        function renderStackTools() {
-            const container = document.querySelector('#profile div:nth-of-type(2) .grid');
-            container.innerHTML = Object.entries(cyberData.stack).map(([category, tools]) => `
-                <div class="glassmorphism p-3 rounded-lg">
-                    <h4 class="font-semibold text-emerald-400 text-sm mb-2">${category.toUpperCase()}</h4>
-                    <ul class="space-y-1 text-sm">
-                        ${tools.map(tool => `<li>• ${tool}</li>`).join('')}
-                    </ul>
-                </div>
-            `).join('');
-        }
+            /**
+             * closeModal() : Cache la modale de détails
+             */
+            closeModal() {
+                document.getElementById('project-modal').classList.replace('flex', 'hidden');
+                document.body.style.overflow = 'auto'; // Réactive le défilement
+            },
 
-        // Modal Management
-        function openWriteupModal(index) {
-            currentWriteupIndex = index;
-            const writeup = cyberData.writeups[index];
+            /**
+             * navigateModal(dir) : Passe au projet suivant ou précédent dans la modale
+             * @param {number} dir - Direction (-1 pour précédent, 1 pour suivant)
+             */
+            navigateModal(dir) {
+                const total = adminData.projects.length;
+                // Calcul de l'index avec modulo pour boucler (si après dernier, revient au premier)
+                this.currentProjectIndex = (this.currentProjectIndex + dir + total) % total;
+                this.openModal(this.currentProjectIndex);
+            },
 
-            // Set main content
-            document.getElementById('modal-title').textContent = writeup.title;
-            document.getElementById('modal-main-image').src = writeup.image;
-            document.getElementById('modal-target').textContent = writeup.platform;
-            document.getElementById('modal-difficulty').textContent = writeup.difficulty;
-            document.getElementById('modal-date').textContent = writeup.date;
-
-            // Set gallery images
-            document.getElementById('modal-gallery-1').src = writeup.gallery[0];
-            document.getElementById('modal-gallery-2').src = writeup.gallery[1];
-
-            // Set content sections
-            const contentDiv = document.getElementById('modal-content');
-            contentDiv.innerHTML = `
-                <div class="space-y-4">
-                    <div>
-                        <h4 class="font-bold text-white mb-2">// CONTEXTE</h4>
-                        <p class="text-gray-300">${writeup.context}</p>
-                    </div>
-                    <div>
-                        <img src="${writeup.gallery[0]}" alt="Proof 1" class="rounded-lg mb-2 w-full h-72 object-cover">
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white mb-2">// VULNÉRABILITÉ</h4>
-                        <p class="text-gray-300">${writeup.vulnerability}</p>
-                    </div>
-                    <div>
-                        <img src="${writeup.gallery[1]}" alt="Proof 2" class="rounded-lg mb-2 w-full h-72 object-cover">
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white mb-2">// EXPLOITATION</h4>
-                        <p class="text-gray-300">${writeup.exploitation}</p>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white mb-2">// MITIGATION</h4>
-                        <p class="text-gray-300">${writeup.mitigation}</p>
-                    </div>
-                    <div class="glassmorphism p-3 rounded-lg border border-gray-700">
-                        <a href="${writeup.github_link}" target="_blank" class="flex items-center space-x-2 text-emerald-400 hover:text-emerald-300 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
-                            </svg>
-                            <span>VIEW_EXPLOIT()</span>
-                        </a>
-                    </div>
-                </div>
-            `;
-
-            // Set navigation buttons
-            updateNavigationButtons();
-
-            // Show modal
-            modal.classList.remove('pointer-events-none', 'opacity-0');
-            modal.querySelector('div:last-child').classList.remove('translate-y-full');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            modal.querySelector('div:last-child').classList.add('translate-y-full');
-            setTimeout(() => {
-                modal.classList.add('pointer-events-none', 'opacity-0');
-                document.body.style.overflow = '';
-            }, 300);
-        }
-
-        function updateNavigationButtons() {
-            const prevWriteup = cyberData.writeups[(currentWriteupIndex - 1 + cyberData.writeups.length) % cyberData.writeups.length];
-            const nextWriteup = cyberData.writeups[(currentWriteupIndex + 1) % cyberData.writeups.length];
-
-            document.getElementById('prev-title').textContent = prevWriteup.title;
-            document.getElementById('prev-thumbnail').src = prevWriteup.image;
-            document.getElementById('next-title').textContent = nextWriteup.title;
-            document.getElementById('next-thumbnail').src = nextWriteup.image;
-        }
-
-        function navigateWriteup(direction) {
-            currentWriteupIndex = (currentWriteupIndex + direction + cyberData.writeups.length) % cyberData.writeups.length;
-            openWriteupModal(currentWriteupIndex);
-        }
-
-        // Close modal when clicking outside
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
+            /**
+             * handleForms() : Gère l'envoi factice du formulaire de contact
+             */
+            handleForms() {
+                document.getElementById('contact-form').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const btn = e.target.querySelector('button');
+                    
+                    // Feedback visuel de succès70
+                    btn.innerText = "SUCCESS_TRANSMITTED";
+                    btn.classList.replace('text-blue-400', 'text-green-400');
+                    btn.classList.replace('border-blue-500', 'border-green-500');
+                    
+                    // Réinitialisation après 3 secondes
+                    setTimeout(() => {
+                        e.target.reset();
+                        btn.innerText = "SEND_PACKET";
+                        btn.classList.replace('text-green-400', 'text-blue-400');
+                        btn.classList.replace('border-green-500', 'border-blue-500');
+                    }, 3000);
+                });
             }
-        });
+        };
 
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (modal.classList.contains('opacity-0')) return;
-
-            if (e.key === 'Escape') {
-                closeModal();
-            } else if (e.key === 'ArrowLeft') {
-                navigateWriteup(-1);
-            } else if (e.key === 'ArrowRight') {
-                navigateWriteup(1);
-            }
-        });
+        // Lancement de l'application quand le document est prêt
+        document.addEventListener('DOMContentLoaded', () => app.init());
     </script>
 </body>
 </html>
