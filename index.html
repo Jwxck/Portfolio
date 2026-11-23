@@ -289,37 +289,16 @@
             projects: [
                 {
                     id: 0,
-                    title: "Zero Trust Network Access (ZTNA)",
-                    shortDesc: "Implémentation d'une architecture d'accès sécurisé sans VPN traditionnel.",
+                    title: "VPN Site à Client",
+                    shortDesc: "Mise en place d'un VPN sécurisé StoC",
                     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=800",
-                    fullDesc: "Refonte complète de l'accès distant pour 2000 collaborateurs. Abandon du VPN client-to-site pour un modèle basé sur l'identité et le contexte de l'appareil.",
-                    problem: "Le VPN traditionnel autorisait trop de mouvements latéraux en cas de compromission d'identifiants.",
-                    solution: "Déploiement d'une passerelle d'accès vérifiant l'état du poste (mises à jour, AV actif) et l'identité (MFA) avant d'autoriser l'accès granulaire aux applications.",
-                    techs: ["Identity Proxy", "Wireguard", "OIDC", "CoreDNS"],
-                    link: "#"
+                    fullDesc: "Mise en place d'un VPN pour un accès distant au site par un client. Plus gestion des permissions en fonction du client",
+                    problem: "Aucun VPN mis en place, l'accès ne se faisait qu'en local",
+                    solution: "Déploiement d'un VPN sécurisé avec Wireguard et Tailscale.",
+                    techs: ["Tailscale", "Wireguard",],
+                    link: "SOON"
                 },
-                {
-                    id: 1,
-                    title: "Automated SIEM Deployment",
-                    shortDesc: "Stack de monitoring de sécurité automatisée avec Ansible.",
-                    image: "https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&q=80&w=800",
-                    fullDesc: "Création d'un environnement de détection d'incidents prêt à l'emploi, incluant la collecte de logs et la génération d'alertes intelligentes.",
-                    problem: "Les déploiements manuels de SIEM prenaient des jours et étaient sujets aux erreurs de configuration de parsing.",
-                    solution: "Écriture de playbooks Ansible pour provisionner une stack ELK avec des agents Fleet pré-configurés pour les standards CIS Benchmark.",
-                    techs: ["Elasticsearch", "Logstash", "Ansible", "Fleet"],
-                    link: "#"
-                },
-                {
-                    id: 2,
-                    title: "Cloud Hardening Engine",
-                    shortDesc: "Scanner de conformité de sécurité pour infrastructures AWS.",
-                    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800",
-                    fullDesc: "Outil interne de vérification continue des ressources Cloud pour prévenir les fuites de données (S3 publics, security groups trop permissifs).",
-                    problem: "Dérive de configuration (Config Drift) rendant les audits annuels inefficaces.",
-                    solution: "Scripting Python utilisant Boto3 pour monitorer en temps réel les changements d'état et notifier les équipes via Slack.",
-                    techs: ["Python", "AWS SDK", "Boto3", "Lambda"],
-                    link: "#"
-                }
+
             ]
         };
 
